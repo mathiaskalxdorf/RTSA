@@ -1,0 +1,9 @@
+Package: RTSA
+Type: Package
+Title: Ratio-based thermal shift assay analysis
+Version: 1.0
+Date: 2018-04-26
+Author: Mathias Kalxdorf
+Maintainer: Mathias Kalxdorf <mathias.m.kalxdorf@gsk.com>
+Description: Ratio-based thermal shift assay analysis
+License: ?
