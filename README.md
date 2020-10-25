@@ -29,7 +29,7 @@ Next, we install the RTSA package from GitHub
 
 install.packages("devtools")
 
-devtools::install_github("mathiaskalxdorf/IceR")
+devtools::install_github("mathiaskalxdorf/RTSA")
 
 ```
 
