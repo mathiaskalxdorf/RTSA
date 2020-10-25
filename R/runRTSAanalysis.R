@@ -22,7 +22,7 @@ printf = function(s, ...) cat(paste0(sprintf(s, ...)), '\n')
 
 `%not in%` <- function (x, table) is.na(match(x, table, nomatch=NA_integer_))
 
-runAnalysis = function(path_to_analysis_cfg,progressbar=T,remove_contaminants=T) ###do ratio-based TPP data analysis
+runRTSAnalysis = function(path_to_analysis_cfg=NA,progressbar=T,remove_contaminants=T) ###do ratio-based TPP data analysis
 {
   ###################################################################################
   Analysisversion <<- 1.0
@@ -31,6 +31,12 @@ runAnalysis = function(path_to_analysis_cfg,progressbar=T,remove_contaminants=T)
   colors_melt_cond1 <<- c("red4","red3","red2","orangered4","orangered3","orangered2","indianred4","indianred3","indianred2","deeppink4","deeppink3","deeppink") ##in total colors for max 12 replicates
   colors_melt_cond2 <<- c("royalblue4","royalblue3","royalblue2","slateblue4","slateblue3","slateblue2","steelblue4","steelblue3","steelblue2","turquoise4","turquoise3","turquoise1") ##in total colors for max 12 replicates
   ###################################################################################
+  
+  ###check if path to the analysis config xls file was defined
+  if(is.na(path_to_analysis_cfg))
+  {
+    path_to_analysis_cfg <- file.choose(new = T)
+  }
   
   ###get identifier name for analysis run
   time <- as.character(Sys.time())
@@ -50,7 +56,7 @@ runAnalysis = function(path_to_analysis_cfg,progressbar=T,remove_contaminants=T)
   uniprot_annotations <- read.xlsx(file.path(system.file("extdata", package = "RTSA"), "Human Proteome with Localization and Membrane Interaction.xlsx"))
   
   ####Read data from lims
-  data_list <- readDatafromLims(cfg_info,uniprot_annotations,progressbar,remove_contaminants)
+  data_list <- readData(cfg_info,uniprot_annotations,progressbar,remove_contaminants)
   
   ####Check if reference temperature (37°C) of Control condition is used as reference channel
   for(i in 1:length(data_list))

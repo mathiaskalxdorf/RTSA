@@ -8,7 +8,7 @@ readDatafromLims = function(cfg_info,uniprot_annotations,progressbar=T,remove_co
     printf("Read MSExperiment Data %d",cfg_info$cfg_sheet[i,1])
     if("PF" %in% colnames(cfg_info$cfg_sheet)){PF <- cfg_info$cfg_sheet$PF[i]}else{PF <- 1}
     if("QV" %in% colnames(cfg_info$cfg_sheet)){QV <- cfg_info$cfg_sheet$QV[i]}else{QV <- 1}
-    path <- paste("http://hdb-files/quantitation/msexperiment_",cfg_info$cfg_sheet[i,1],"/PFC_",cfg_info$cfg_sheet[i,1],"_PF",PF,"_QV",QV,"_",cfg_info$cfg_sheet[i,3],".txt",sep="")
+    path <- paste("PFC_",cfg_info$cfg_sheet[i,1],"_PF",PF,"_QV",QV,"_",cfg_info$cfg_sheet[i,3],".txt",sep="")
     Data<-read.csv(path,header = TRUE,sep="\t")
     if(remove_contaminants==T & any(colnames(Data) == "focus_group"))
     {
