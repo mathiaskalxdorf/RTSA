@@ -1,4 +1,4 @@
-readDatafromLims = function(cfg_info,uniprot_annotations,progressbar=T,remove_contaminants=T) ###read data from lims based on information from analysis setup sheet
+readData = function(cfg_info,uniprot_annotations,progressbar=T,remove_contaminants=T) ###read data from lims based on information from analysis setup sheet
 {
   dataList <- list()
   max <- cfg_info$num_samples

@@ -47,16 +47,18 @@ runRTSAnalysis = function(path_to_analysis_cfg=NA,progressbar=T,remove_contamina
   ###Read AnalysisInfo-Sheet
   cfg_info <- readAnalysisSetup(path_to_analysis_cfg)
   
-  ###Change working directory and create outputfolder
+  ###Create outputfolder
   setwd(cfg_info$directory)
   dir.create(analysis_run_name, showWarnings = FALSE)
-  setwd(paste(cfg_info$directory,"//",analysis_run_name,sep=""))
   
   ###Read uniprot annotations
   uniprot_annotations <- read.xlsx(file.path(system.file("extdata", package = "RTSA"), "Human Proteome with Localization and Membrane Interaction.xlsx"))
   
   ####Read data from lims
   data_list <- readData(cfg_info,uniprot_annotations,progressbar,remove_contaminants)
+  
+  ###Change working directory and create outputfolder
+  setwd(paste(cfg_info$directory,"//",analysis_run_name,sep=""))
   
   ####Check if reference temperature (37°C) of Control condition is used as reference channel
   for(i in 1:length(data_list))

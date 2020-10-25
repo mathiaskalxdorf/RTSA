@@ -19,5 +19,4 @@ import(EmpiricalBrownsMethod)
 import(data.table)
 import(PECA)
 
-export(runAnalysis)
-export(replotAnalysis)
+export(runRTSAnalysis)
