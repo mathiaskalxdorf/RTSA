@@ -2,7 +2,7 @@
 
 <p align="center"> 
 
-<img src="images/CSTPP analysis workflow.jpg" style="width: 50%; height: 50%"/>
+<img src="images/CSTPP analysis workflow.png" style="width: 50%; height: 50%"/>
 
 </p>
 
