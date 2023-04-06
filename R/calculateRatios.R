@@ -33,16 +33,16 @@ calculateRatios = function(summary_data_list_normalized,cfg_info,fordata = "both
         ####replace relfc with value = 0 by 0.01 and then calculate ratios
         for(p in 1:nrow(data_list[[i]]))
         {
-          if(!is.na(data_list[[i]][p,colindexref]))
+          if(any(!is.na(data_list[[i]][p,colindexref])))
           {
-            if(data_list[[i]][p,colindexref] == 0)
+            if(any(data_list[[i]][p,colindexref] == 0))
             {
               data_list[[i]][p,colindexref] = 0.01
             }
           }
-          if(!is.na(data_list[[i]][p,colindexref]) & !is.na(data_list[[i]][p,colindex]))
+          if(any(!is.na(data_list[[i]][p,colindexref])) & any(!is.na(data_list[[i]][p,colindex])))
           {
-            if(data_list[[i]][p,colindex] >= cfg_info$relfc_cutoff_plot | data_list[[i]][p,colindexref] >= cfg_info$relfc_cutoff_plot)
+            if(any(data_list[[i]][p,colindex] >= cfg_info$relfc_cutoff_plot) | any(data_list[[i]][p,colindexref] >= cfg_info$relfc_cutoff_plot))
             {
               data_list[[i]][p,ratiocolname] <- data_list[[i]][p,colindex]/data_list[[i]][p,colindexref]
             }else

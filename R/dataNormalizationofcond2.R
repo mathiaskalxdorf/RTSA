@@ -28,7 +28,7 @@ dataNormalizationofcond2 = function(cfg_info,data_list,norm_in_log2=T) ###Normal
         colindexreffc <- append(colindexreffc,which(colnames(data_list[[i]]) == paste("rel_fc_protein_",cfg_info$tmt_channel_per_exp_condition1[t,i],"_norm",sep="")))
       }
       ###extract max densities for adjusted following density plots
-      maxdens <- NA
+      maxdens <- NULL
       densymax <- 0###for density plots
       for(i in dataindices)
       {
@@ -48,13 +48,7 @@ dataNormalizationofcond2 = function(cfg_info,data_list,norm_in_log2=T) ###Normal
         
         Correctiontablecond2[t,1+i] <- maxDensity(foldchange)
         Correctiontablecond2[t,1+(2*cfg_info$num_samples)+i] <- nrow(temp)
-        if(is.na(maxdens))
-        {
-          maxdens <- Correctiontablecond2[t,1+i]
-        }else
-        {
-          maxdens <- append(maxdens,Correctiontablecond2[t,1+i])
-        }
+        maxdens <- append(maxdens,Correctiontablecond2[t,1+i])
         if(length(foldchange[!is.na(foldchange)]) > 0)
         {
           density <- density(foldchange[!is.na(foldchange)])

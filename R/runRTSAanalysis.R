@@ -41,7 +41,7 @@ runRTSAnalysis = function(path_to_analysis_cfg=NA,progressbar=T,remove_contamina
   ###get identifier name for analysis run
   time <- as.character(Sys.time())
   time <- gsub(" |:|-","",time)
-  analysis_file_name <- substr(path_to_analysis_cfg,unlist(gregexpr("\\\\",path_to_analysis_cfg))[length(unlist(gregexpr("\\\\",path_to_analysis_cfg)))]+1,regexpr(".xlsx",path_to_analysis_cfg)[1]-1)
+  analysis_file_name <- substr(path_to_analysis_cfg,unlist(gregexpr("\\\\|/",path_to_analysis_cfg))[length(unlist(gregexpr("\\\\|/",path_to_analysis_cfg)))]+1,regexpr(".xlsx",path_to_analysis_cfg)[1]-1)
   analysis_run_name <- paste(analysis_file_name,"_",time,sep="")
   
   ###Read AnalysisInfo-Sheet
@@ -58,7 +58,7 @@ runRTSAnalysis = function(path_to_analysis_cfg=NA,progressbar=T,remove_contamina
   data_list <- readData(cfg_info,uniprot_annotations,progressbar,remove_contaminants)
   
   ###Change working directory and create outputfolder
-  setwd(paste(cfg_info$directory,"//",analysis_run_name,sep=""))
+  setwd(paste(cfg_info$directory,"/",analysis_run_name,sep=""))
   
   ####Check if reference temperature (37°C) of Control condition is used as reference channel
   for(i in 1:length(data_list))

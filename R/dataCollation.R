@@ -33,7 +33,7 @@ dataCollation = function(summary_data_combined,cfg_info,fordata = "both",progres
       }
       peca_matrix[,ncol(peca_matrix)] <- as.character(peca_matrix[,ncol(peca_matrix)])
       
-      if(progressbar == T){pb <- winProgressBar(title = paste("Collating data:",ndata),label=paste( round(0/nrow(summary_data_combined[[ndata]])*100, 0),"% done"), min = 0,max = nrow(summary_data_combined[[ndata]]), width = 300)}
+      if(progressbar == T){pb <- tcltk::tkProgressBar(title = paste("Collating data:",ndata),label=paste( round(0/nrow(summary_data_combined[[ndata]])*100, 0),"% done"), min = 0,max = nrow(summary_data_combined[[ndata]]), width = 300)}
       for(i in 1:nrow(summary_data_combined[[ndata]]))
       {
         sum <- 0
@@ -242,7 +242,7 @@ dataCollation = function(summary_data_combined,cfg_info,fordata = "both",progres
         collationcount[i,1] <- selectedcount
         collationstart[i,1] <- selectedstart
         
-        if(progressbar == T){setWinProgressBar(pb, i, label=paste( round(i/nrow(summary_data_combined[[ndata]])*100, 0)," % done (",i,"/",nrow(summary_data_combined[[ndata]]),")",sep = ""))}
+        if(progressbar == T){tcltk::setTkProgressBar(pb, i, label=paste( round(i/nrow(summary_data_combined[[ndata]])*100, 0)," % done (",i,"/",nrow(summary_data_combined[[ndata]]),")",sep = ""))}
       }
       if(progressbar == T){close(pb)}
       
@@ -274,7 +274,7 @@ dataCollation = function(summary_data_combined,cfg_info,fordata = "both",progres
       
       collationratiocount <- as.data.frame(matrix(ncol=1,nrow=nrow(summary_data_combined[[ndata]])))
       collationratiostart <- as.data.frame(matrix(ncol=1,nrow=nrow(summary_data_combined[[ndata]])))
-      if(progressbar == T){pb <- winProgressBar(title = paste("Collating data:",ndata),label=paste( round(0/nrow(summary_data_combined[[ndata]])*100, 0),"% done"), min = 0,max = nrow(summary_data_combined[[ndata]]), width = 300)}
+      if(progressbar == T){pb <- tcltk::tkProgressBar(title = paste("Collating data:",ndata),label=paste( round(0/nrow(summary_data_combined[[ndata]])*100, 0),"% done"), min = 0,max = nrow(summary_data_combined[[ndata]]), width = 300)}
       for(i in 1:nrow(summary_data_combined[[ndata]]))###for each protein
       {
         ###combine pvalues for less and greater, then decide which direction is most significant
@@ -453,7 +453,7 @@ dataCollation = function(summary_data_combined,cfg_info,fordata = "both",progres
           }
           
         }
-        if(progressbar == T){setWinProgressBar(pb, i, label=paste( round(i/nrow(summary_data_combined[[ndata]])*100, 0)," % done (",i,"/",nrow(summary_data_combined[[ndata]]),")",sep = ""))}
+        if(progressbar == T){tcltk::setTkProgressBar(pb, i, label=paste( round(i/nrow(summary_data_combined[[ndata]])*100, 0)," % done (",i,"/",nrow(summary_data_combined[[ndata]]),")",sep = ""))}
       }
       if(progressbar == T){close(pb)} 
       
@@ -508,7 +508,7 @@ dataCollation = function(summary_data_combined,cfg_info,fordata = "both",progres
       nGradientSlices <- 3 ###defines how many pvalues are collated per slice test e.g 9 temperatures in 3 slices --> 3 pvalues per slice are tested
       npvalsperslice <- floor(length(cfg_info$temp_gradient)/nGradientSlices)
       
-      if(progressbar == T){pb <- winProgressBar(title = paste("Collating data:",ndata),label=paste( round(0/nrow(summary_data_combined[[ndata]])*100, 0),"% done"), min = 0,max = nrow(summary_data_combined[[ndata]]), width = 300)}
+      if(progressbar == T){pb <- tcltk::tkProgressBar(title = paste("Collating data:",ndata),label=paste( round(0/nrow(summary_data_combined[[ndata]])*100, 0),"% done"), min = 0,max = nrow(summary_data_combined[[ndata]]), width = 300)}
       for(i in 1:nrow(summary_data_combined[[ndata]]))###for each protein
       {
         ###combine pvalues for less and greater, then decide which direction is most significant
@@ -776,7 +776,7 @@ dataCollation = function(summary_data_combined,cfg_info,fordata = "both",progres
           }
           
         }
-        if(progressbar == T){setWinProgressBar(pb, i, label=paste( round(i/nrow(summary_data_combined[[ndata]])*100, 0)," % done (",i,"/",nrow(summary_data_combined[[ndata]]),")",sep = ""))}
+        if(progressbar == T){tcltk::setTkProgressBar(pb, i, label=paste( round(i/nrow(summary_data_combined[[ndata]])*100, 0)," % done (",i,"/",nrow(summary_data_combined[[ndata]]),")",sep = ""))}
       }
       if(progressbar == T){close(pb)}
       
@@ -824,7 +824,7 @@ dataCollation = function(summary_data_combined,cfg_info,fordata = "both",progres
       collationpValue <- as.data.frame(matrix(ncol=1,nrow=nrow(summary_data_combined[[ndata]])))
       collationcount <- as.data.frame(matrix(ncol=1,nrow=nrow(summary_data_combined[[ndata]])))
       collationstart <- as.data.frame(matrix(ncol=1,nrow=nrow(summary_data_combined[[ndata]])))
-      if(progressbar == T){pb <- winProgressBar(title = paste("Collating data:",ndata),label=paste( round(0/nrow(summary_data_combined[[ndata]])*100, 0),"% done"), min = 0,max = nrow(summary_data_combined[[ndata]]), width = 300)}
+      if(progressbar == T){pb <- tcltk::tkProgressBar(title = paste("Collating data:",ndata),label=paste( round(0/nrow(summary_data_combined[[ndata]])*100, 0),"% done"), min = 0,max = nrow(summary_data_combined[[ndata]]), width = 300)}
       for(i in 1:nrow(summary_data_combined[[ndata]])) 
       {
         sum <- 0
@@ -1023,7 +1023,7 @@ dataCollation = function(summary_data_combined,cfg_info,fordata = "both",progres
           collationcount[i,1] <- NA
           collationstart[i,1] <- NA
         }
-        if(progressbar == T){setWinProgressBar(pb, i, label=paste( round(i/nrow(summary_data_combined[[ndata]])*100, 0)," % done (",i,"/",nrow(summary_data_combined[[ndata]]),")",sep = ""))}
+        if(progressbar == T){tcltk::setTkProgressBar(pb, i, label=paste( round(i/nrow(summary_data_combined[[ndata]])*100, 0)," % done (",i,"/",nrow(summary_data_combined[[ndata]]),")",sep = ""))}
       }
       if(progressbar == T){close(pb)}
       

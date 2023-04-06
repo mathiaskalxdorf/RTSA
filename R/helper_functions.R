@@ -48,7 +48,7 @@ saveExcel = function(Data,Sheet_Names = NA,File)
   {
     for(i in 1:length(Data))
     {
-      if(is.na(Sheet_Names))
+      if(any(is.na(Sheet_Names)))
       {
         addWorksheet(wb,paste("sheet_",i,sep=""))
         writeData(wb, paste("sheet_",i,sep=""),Data[[i]]) 

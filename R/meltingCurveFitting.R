@@ -153,7 +153,7 @@ meltingCurveFitting = function(summary_data_combined,cfg_info,fordata = "both",p
     
     ###now fit melting curves per protein with normalized relfcs
     
-    if(progressbar == T){pb <- winProgressBar(title = paste("Fitting melting curves:",ndata),label=paste( round(0/(numreplicates*nrow(summary_data_combined[[ndata]]))*100, 0),"% done"), min = 0,max = numreplicates*nrow(summary_data_combined[[ndata]]), width = 300)}
+    if(progressbar == T){pb <- tcltk::tkProgressBar(title = paste("Fitting melting curves:",ndata),label=paste( round(0/(numreplicates*nrow(summary_data_combined[[ndata]]))*100, 0),"% done"), min = 0,max = numreplicates*nrow(summary_data_combined[[ndata]]), width = 300)}
     for(r in unique(cfg_info$dataset_to_gradientpart$Replicate)) ###for each replicate
     {
       for(i in 1:nrow(summary_data_combined[[ndata]])) ###each protein
@@ -261,7 +261,7 @@ meltingCurveFitting = function(summary_data_combined,cfg_info,fordata = "both",p
           RSqares[i,numreplicates+r] <- (1-(sum(distres[1,]^2,na.rm=T)/sum(disttot[1,]^2,na.rm=T)))
         }
         counter <- counter + 1
-        if(progressbar == T){setWinProgressBar(pb, counter, label=paste(round(counter/(numreplicates*nrow(summary_data_combined[[ndata]]))*100, 0)," % done (",counter,"/",numreplicates*nrow(summary_data_combined[[ndata]]),")",sep = ""))}
+        if(progressbar == T){tcltk::setTkProgressBar(pb, counter, label=paste(round(counter/(numreplicates*nrow(summary_data_combined[[ndata]]))*100, 0)," % done (",counter,"/",numreplicates*nrow(summary_data_combined[[ndata]]),")",sep = ""))}
       }
     }
     if(progressbar == T){close(pb)}
@@ -274,7 +274,7 @@ meltingCurveFitting = function(summary_data_combined,cfg_info,fordata = "both",p
     plateaus <- as.data.frame(matrix(ncol=3,nrow=nrow(data)))
     colnames(plateaus) <- c("Plateau","Plateau_relfc_cond1","Plateau_relfc_cond2")
     max <- nrow(data)
-    if(progressbar == T){pb <- winProgressBar(title = paste("Calculate plateaus:",ndata),label=paste( round(0/max*100, 0),"% done"), min = 0,max = max, width = 300)}
+    if(progressbar == T){pb <- tcltk::tkProgressBar(title = paste("Calculate plateaus:",ndata),label=paste( round(0/max*100, 0),"% done"), min = 0,max = max, width = 300)}
     Rsqcolscond1 <- which(grepl("Rsq_cond1",colnames(data)))
     Rsqcolscond2 <- which(grepl("Rsq_cond2",colnames(data)))
     for(i in 1:nrow(data))
@@ -341,7 +341,7 @@ meltingCurveFitting = function(summary_data_combined,cfg_info,fordata = "both",p
           plateaus[i,3] <- NA
         }
       }
-      if(progressbar == T){setWinProgressBar(pb, i, label=paste( round(i/max*100, 0)," % done (",i,"/",max,")",sep = ""))}
+      if(progressbar == T){tcltk::setTkProgressBar(pb, i, label=paste( round(i/max*100, 0)," % done (",i,"/",max,")",sep = ""))}
     }
     if(progressbar == T){close(pb)}
     summary_data_combined[[ndata]] <- cbind(summary_data_combined[[ndata]],plateaus)

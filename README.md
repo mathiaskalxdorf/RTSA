@@ -1,4 +1,4 @@
-﻿# RTSA - Ratio-based thermal shift assay analysis for cell surface thermal proteome profiling data
+# RTSA - Ratio-based thermal shift assay analysis for cell surface thermal proteome profiling data
 
 <p align="center"> 
 
@@ -14,9 +14,7 @@ Ratio-based thermal shift assay (RTSA) enables a more robust and sensitive detec
 
 The following installations are required:
 
- 
-
- - [R](https://cran.r-project.org/bin/windows/base/) (Version 4.02 or above)
+ - [R](https://cran.r-project.org/bin/windows/base/) (Version 4.2 or above)
  - [Rtools](https://cran.r-project.org/bin/windows/Rtools/history.html) (select required version)
  - Optional: [RStudio](https://rstudio.com/products/rstudio/download/)
 
@@ -26,11 +24,9 @@ Next, we install the RTSA package from GitHub
 
 
 ```r
-
 install.packages("devtools")
 
 devtools::install_github("mathiaskalxdorf/RTSA")
-
 ```
 
 If everything wents fine, RTSA should be installed and is ready to be used.
@@ -42,7 +38,6 @@ With the following lines we load the RTSA package and start the analysis:
 
 
 ```r
-
 library(RTSA)
 runRTSAnalysis()
 ```

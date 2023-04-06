@@ -2,7 +2,7 @@ readData = function(cfg_info,uniprot_annotations,progressbar=T,remove_contaminan
 {
   dataList <- list()
   max <- cfg_info$num_samples
-  if(progressbar == T){pb <- winProgressBar(title = "Collecting data ",label=paste( round(0/max*100, 0),"% done"), min = 0,max = max, width = 300)}
+  if(progressbar == T){pb <- tcltk::tkProgressBar(title = "Collecting data ",label=paste( round(0/max*100, 0),"% done"), min = 0,max = max, width = 300)}
   for(i in 1:cfg_info$num_samples)
   {
     printf("Read MSExperiment Data %d",cfg_info$cfg_sheet[i,1])
@@ -23,7 +23,7 @@ readData = function(cfg_info,uniprot_annotations,progressbar=T,remove_contaminan
     Data <- left_join(Data,uniprot_annotations, by=c("gene_name" = "Gene.Name"))
     if(cfg_info$subcellular_localization == "all"){dataList[[i]] <- Data}
     if(cfg_info$subcellular_localization == "surface"){dataList[[i]] <- subset(Data,Localization %in% c("Plasma membrane","Secreted"))}
-    if(progressbar == T){setWinProgressBar(pb, i, label=paste( round(i/max*100, 0)," % done (",i,"/",max,")",sep = ""))}
+    if(progressbar == T){tcltk::setTkProgressBar(pb, i, label=paste( round(i/max*100, 0)," % done (",i,"/",max,")",sep = ""))}
   }
   if(progressbar == T){close(pb)}
   return(dataList)

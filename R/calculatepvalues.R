@@ -27,7 +27,7 @@ calculatepvalues = function(summary_data_combined,cfg_info,fordata = "both",prog
     p_valgreater <- as.data.frame(matrix(ncol=length(cfg_info$temp_gradient),nrow=nrow(summary_data_combined[[ndata]])))
     max <- length(cfg_info$temp_gradient) * nrow(summary_data_combined[[ndata]])
     count <- 0
-    if(progressbar == T){pb <- winProgressBar(title = paste("Calculating pValues:",ndata),label=paste( round(count/max*100, 0)," % done (",count,"/",max,")",sep = ""), min = 0,max = max, width = 300)}
+    if(progressbar == T){pb <- tcltk::tkProgressBar(title = paste("Calculating pValues:",ndata),label=paste( round(count/max*100, 0)," % done (",count,"/",max,")",sep = ""), min = 0,max = max, width = 300)}
     for(t in cfg_info$temp_gradient)
     {
       tindex <- which(cfg_info$temp_gradient == t)
@@ -73,7 +73,7 @@ calculatepvalues = function(summary_data_combined,cfg_info,fordata = "both",prog
         }
         
         count <- count + 1
-        if(progressbar == T){setWinProgressBar(pb, count, label=paste( round(count/max*100, 0)," % done (",count,"/",max,")",sep = ""))}
+        if(progressbar == T){tcltk::setTkProgressBar(pb, count, label=paste( round(count/max*100, 0)," % done (",count,"/",max,")",sep = ""))}
       }
     }
     if(progressbar == T){close(pb)}
